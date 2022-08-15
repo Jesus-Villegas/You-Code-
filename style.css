@@ -226,6 +226,22 @@ section .option_list .option:hover{
     border-color: #a42834;
 }
 
+.option_list .option.correct{
+    color: #155724;
+    border-color: #23903c;
+    background: #d4edda;
+}
+
+.option_list .option.wrong{
+    color: #a42834;
+    background-color: #f8d7da;
+    border-color: #a42834;
+}
+
+.option_list .option.disabled{
+    pointer-events: none;
+}
+
 .quiz_box footer{
     height: 60px;
     width: 100%;
