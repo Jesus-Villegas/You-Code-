@@ -87,6 +87,7 @@ body{
     margin: 0 5px;
     height: 40px;
     width: 100px;
+    outline: none;
     border: 1px solid transparent;
     background: rgb(65, 65, 255);
     border-radius: 5px;

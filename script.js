@@ -8,10 +8,11 @@ const quiz_box = info_box.querySelector(".quiz_box");
 //Start Quiz Button Click 
 start_btn.onclick=()=>{
     info_box.classList.add("activeInfo"); // Shows the info box
+    console.log("works");
 }
 
 //If Exit Button Clicked
-exit_btn.onclick=()=>{
+exit_btn.onclick =()=>{
     info_box.classList.add("activeInfo"); // Hiide the info box
 }
 
