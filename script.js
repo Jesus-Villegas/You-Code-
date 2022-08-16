@@ -4,8 +4,10 @@ const info_box = document.querySelector(".info_box");
 const exit_btn = info_box.querySelector(".buttons .quit");
 const continue_btn = info_box.querySelector(".buttons .restart");
 const quiz_box = document.querySelector(".quiz_box");
-const option_list = document.querySelector(".option_list");
 const timeCount = quiz_box.querySelector(".timer .timer_sec");
+// const timeLine = quiz_box.querySelector("header .timer_line");
+
+const option_list = document.querySelector(".option_list");
 
 //Start Quiz Button Click 
 start_btn.onclick=()=>{
@@ -26,25 +28,30 @@ continue_btn.onclick=()=>{
     showQuestions(0);
     queCounter(1);
     startTimer(timeValue);
-    
+    // startTimerLine(0);
+       next_btn.style.display = 'none';
 }
 
 let que_count = 0;
 let que_number = 1;
 let  counter;
 let timeValue = 30;
+// let widthValue = 0;
 
 const next_btn = quiz_box.querySelector(".next_btn")
 
 //If Next Button iis clicked 
 next_btn.onclick = () => {
     if(que_count < questions.length-1){
-    que_count++;
-    que_number++;
-    showQuestions(que_count);
-    queCounter(que_number);
-    clearInterval(counter);
-    startTimer(timeValue);
+        que_count++;
+        que_number++;
+        showQuestions(que_count);
+        queCounter(que_number);
+        clearInterval(counter);
+        startTimer(timeValue);
+        next_btn.style.display = 'none';
+        // clearInterval(counterLine);
+        // startTimerLine(widthValue);
     }else{
         console.log('Questions Completed');
     }
@@ -72,6 +79,7 @@ let  tickIcon ='<div class="icon tick"><i class="fas fa-check"></i></div>';
 let  crossIcon ='<div class="icon cross"><i class="fas fa-times"></i></div>';
 
 function optionSelected(answer){
+    clearInterval(counter);
     let userAnswer = answer.textContent;
     let correctAnswer = questions[que_count].answer;
     let allOptions = option_list.children.length;    
@@ -103,6 +111,7 @@ function optionSelected(answer){
     for (let i = 0; i < allOptions; i++){
         option_list.children[i].classList.add("disabled");
     }
+    next_btn.style.display = 'block';
 }
 
 function startTimer(time) { 
@@ -110,8 +119,27 @@ function startTimer(time) {
     function timer(){
         timeCount.textContent = time;
         time--;
+        if(time < 9){
+            let addZero = timeCount.textContent;
+            timeCount.textContent = '0' + addZero;
+        }
+        if(time < 0){
+            clearInterval(counter);
+            timeCount.textContent = '00';
+        }
     }
 }
+
+// function startTimerLine(time) { 
+//     counterLine = setInterval(timer,29);
+//     function timer(){
+//         time += 1;
+//         timeLine.style.width = time + 'px';
+//         if(time > 549){
+//             clearInterval(counterLine);
+//         }
+//     }
+// }
 
 function queCounter(index){
     const bottom_ques_counter = quiz_box.querySelector(".total_que");
